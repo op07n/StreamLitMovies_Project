@@ -13,8 +13,8 @@ import jellyfish
 # Load Data -----------------------------------------------------
 @st.cache(suppress_st_warning=True)
 def load_data():
-    df_Movies = pd.read_csv("https://raw.githubusercontent.com/roussetcedric/WCS_Public/master/imdb_movies_light.csv")
-    #df_Movies = pd.read_csv("https://drive.google.com/uc?id=1o7-dyBewlOKIgb9dT9ckXsjvKVZBuduM")
+    # df_Movies = pd.read_csv("https://raw.githubusercontent.com/roussetcedric/WCS_Public/master/imdb_movies_light.csv")
+    df_Movies = pd.read_csv("https://drive.google.com/uc?id=1o7-dyBewlOKIgb9dT9ckXsjvKVZBuduM")
     return df_Movies
 
 # Define CSS
@@ -46,7 +46,7 @@ def DisplayDataFrame(df_Movies,GenreList, DirectorList, ActorList, WriterList, C
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["directorsName"].str.contains('|'.join(DirectorList))]
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["genres"].str.contains('|'.join(GenreList))]
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["writersName"].str.contains('|'.join(WriterList))]
-    st.wirte(ComposerList)
+    st.write(ComposerList)
     #df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["composersName"].str.contains('|'.join(ComposerList))]
     return df_DisplayLocal
 
