@@ -13,7 +13,7 @@ import jellyfish
 # Load Data -----------------------------------------------------
 @st.cache(suppress_st_warning=True)
 def load_data():
-    # df_Movies = pd.read_csv("https://raw.githubusercontent.com/roussetcedric/WCS_Public/master/imdb_movies_light.csv")
+    #df_Movies = pd.read_csv("https://raw.githubusercontent.com/roussetcedric/WCS_Public/master/imdb_movies_light.csv")
     df_Movies = pd.read_csv("https://drive.google.com/uc?id=1o7-dyBewlOKIgb9dT9ckXsjvKVZBuduM")
     return df_Movies
 
@@ -46,7 +46,7 @@ def DisplayDataFrame(df_Movies,GenreList, DirectorList, ActorList, WriterList, C
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["directorsName"].str.contains('|'.join(DirectorList))]
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["genres"].str.contains('|'.join(GenreList))]
     df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["writersName"].str.contains('|'.join(WriterList))]
-    st.write(ComposerList)
+    st.wirte(ComposerList)
     #df_DisplayLocal = df_DisplayLocal[df_DisplayLocal["composersName"].str.contains('|'.join(ComposerList))]
     return df_DisplayLocal
 
@@ -162,17 +162,9 @@ def main():
         st.write('* **Writers** : ' + str(df_MovieSelectedOne.iloc[0]["writersName"]))
         if pd.notna(df_MovieSelectedOne.iloc[0]["composersName"]) :
             st.write('* **Composers** : ' + str(df_MovieSelectedOne.iloc[0]["composersName"]))
-        if preview_url != '':
-            st.write('* **Preview** : ' + str(get_preview_from_api(IndiceFilm.iloc[0])))
-
-        '''
         preview_url = get_preview_from_api(IndiceFilm.iloc[0])
         if preview_url != '':
-            if st.button('Voir la Bande Annonce !'):
-                st.write(preview_url)
-                vid_file = open(preview_url,"rb").read()
-                st.video(vid_file)
-        '''
+            st.write('* **Preview** : ' + str(preview_url))
 
         # Define Side Menu ----------------------------------------------
         st.sidebar.title("Film Filters")
@@ -222,17 +214,9 @@ def main():
                 st.write('* **Writers** : ' + str(df_Display.iloc[x-1]["writersName"]))
             if pd.notna(df_Display.iloc[x-1]["composersName"]) :
                 st.write('* **Composers** : ' + str(df_Display.iloc[x-1]["composersName"]))
-
-            '''
             preview_url = get_preview_from_api(df_Display.iloc[x-1]["tconst"])
             if preview_url != '':
-                if st.button('Voir la Bande Annonce !'):
-                    st.write(preview_url)
-            '''
-
-        if st.button('Reset selection !'):
-            session_state.button_selected = False
-            title = ''
+                st.write('* **Preview** : ' + str(preview_url))
 
 if __name__ == '__main__':
     main()
