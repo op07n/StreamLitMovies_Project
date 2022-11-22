@@ -4,7 +4,7 @@ streamlit==0.48.1
 jupyter-server-proxy 
 jupyter-rsession-proxy
 nbserverproxy
-Pillow==6.2.2
+Pillow==9.3.0
 requests==2.20.0
 wheel==0.34.2
 scikit-learn==0.23.1
